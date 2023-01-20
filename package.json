@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "nodemon --exec babel-node index.js",
     "dev": "nodemon --exec babel-node --max-old-space-size=24576 index.js -r dotenv/config dotenv_config_path=./.env.development ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
