@@ -10,7 +10,7 @@ import {
 } from '../services';
 
  const init = async (sendMessage) => {
-    const binanceWS = new WebSocket(`${process.env.WEBSOCKET_BINANCE_BASE_URL}`);
+    const binanceWS = new WebSocket(`${process.env['WEBSOCKET_BINANCE_BASE_URL']}`);
 
     try {
         /** ON OPEN SOCKET CONNECTION */

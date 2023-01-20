@@ -1,7 +1,7 @@
 import { 
     binanceService,
     botConfigService
-} from '../services';
+} from '.';
 
 const getOperationsCount = async () => {
     let statistics = {

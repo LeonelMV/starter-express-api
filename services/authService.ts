@@ -9,13 +9,13 @@ const createToken = (user) => {
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix() //expira en 14 dias
   };
-  return jwt.encode(payload, process.env.SECRET_TOKEN);
+  return jwt.encode(payload, process.env['SECRET_TOKEN']);
 }
 
 const decodeToken = (token) => {
   const decode = new Promise((resolve, reject) => {
     try{
-      const payload = jwt.decode(token, process.env.SECRET_TOKEN);
+      const payload = jwt.decode(token, process.env['SECRET_TOKEN']);
 
       if(payload.exp <= moment().unix()){
         reject({

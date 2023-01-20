@@ -6,7 +6,7 @@ import accountInformationSocketClient from './accountInformationSocketClient';
 import binanceSocketClient from './binanceSocketClient';
 
 const init = () => {
-    const wss = new WebSocket.Server({ port: process.env.WEBSOCKET_SERVER_PORT });
+    const wss = new WebSocket.Server({ port: process.env['WEBSOCKET_SERVER_PORT'] });
 
     wss.on('connection', (ws) => {
         logger.info(`Nuevo cliente web a la escucha de WEBSOCKETS.`);

@@ -13,8 +13,8 @@ import {
 } from '../services';
 
 const init = () => {
-    logger.info(`** INICIALIZANDO CRON DE ESTADISTICAS DIARIAS ${process.env.STATISTICS_DAILY_RESUME_CRON} **`);
-    cron.schedule(process.env.COIN_DATA_HISTORY_CRON, async () => {
+    logger.info(`** INICIALIZANDO CRON DE ESTADISTICAS DIARIAS ${process.env['STATISTICS_DAILY_RESUME_CRON']} **`);
+    cron.schedule(process.env['STATISTICS_DAILY_RESUME_CRON'], async () => {
         try{
             const botConfigs = await botConfigService.getBotConfig();
             const operationsCountData = await statisticsService.getOperationsCountByDate();

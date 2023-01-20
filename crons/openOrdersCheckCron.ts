@@ -11,8 +11,8 @@ import {
 } from '../services';
 
 const init = () => {
-    logger.info(`** INICIALIZANDO CRON DE CONTROL DE ORDENES ABIERTAS ${process.env.OPEN_ORDERS_CHECK_CRON} **`);
-    cron.schedule(process.env.OPEN_ORDERS_CHECK_CRON, async () => {
+    logger.info(`** INICIALIZANDO CRON DE CONTROL DE ORDENES ABIERTAS ${process.env['OPEN_ORDERS_CHECK_CRON']} **`);
+    cron.schedule(process.env['OPEN_ORDERS_CHECK_CRON'], async () => {
         const openOrders = await binanceService.getAllCurrentOpenOrders().catch(error => logger.error(error));
         const botConfigs = await botConfigService.getBotConfig().catch(error => logger.error(error))
         let expectedOrdersCount = 0;

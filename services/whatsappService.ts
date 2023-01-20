@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
     notificationsService,
-} from '../services';
+} from '.';
 
 import {
     logger,

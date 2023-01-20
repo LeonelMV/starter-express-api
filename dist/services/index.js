@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.statisticsService = exports.botConfigService = exports.coinsService = exports.notificationsService = exports.whatsappService = exports.authService = exports.binanceService = void 0;
+const authService_1 = __importDefault(require("./authService"));
+exports.authService = authService_1.default;
+const binanceService_1 = __importDefault(require("./binanceService"));
+exports.binanceService = binanceService_1.default;
+const whatsappService_1 = __importDefault(require("./whatsappService"));
+exports.whatsappService = whatsappService_1.default;
+const notificationsService_1 = __importDefault(require("./notificationsService"));
+exports.notificationsService = notificationsService_1.default;
+const coinsService_1 = __importDefault(require("./coinsService"));
+exports.coinsService = coinsService_1.default;
+const botConfigService_1 = __importDefault(require("./botConfigService"));
+exports.botConfigService = botConfigService_1.default;
+const statisticsService_1 = __importDefault(require("./statisticsService"));
+exports.statisticsService = statisticsService_1.default;

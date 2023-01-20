@@ -18,12 +18,12 @@ import {
 } from '../commons/constants';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.BINANCE_BASE_URL,
+  baseURL: process.env['BINANCE_BASE_URL'],
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'X-MBX-APIKEY': process.env.BINANCE_API_KEY,
-    'binance-api-secret': process.env.BINANCE_API_SECRET,
+    'X-MBX-APIKEY': process.env['BINANCE_API_KEY'],
+    'binance-api-secret': process.env['BINANCE_API_SECRET'],
   },
 });
 

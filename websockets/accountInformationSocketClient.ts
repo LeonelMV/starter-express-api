@@ -16,7 +16,7 @@ import {
 
 const init = async (sendMessage) => {
     const { listenKey } = await binanceService.createListenKey().catch(error => logger.error(error));
-    let accountBalancesWS = new WebSocket(`${process.env.WEBSOCKET_BINANCE_BASE_URL}/${listenKey}`);
+    let accountBalancesWS = new WebSocket(`${process.env['WEBSOCKET_BINANCE_BASE_URL']}/${listenKey}`);
     
     try {
         /** ON OPEN SOCKET CONNECTION */
