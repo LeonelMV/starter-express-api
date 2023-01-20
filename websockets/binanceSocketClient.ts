@@ -18,9 +18,8 @@ import {
             logger.info(`*** LISTENING WEB SOCKETS BINANCE INFORMATION *** ${utils.getCurrentTime()}`);
             botConfigService.getBotConfig()
             .then((configs) => {
-                let params = [];
-                configs.forEach((config) => {
-                    params.push(`${config.symbol.toLowerCase()}@ticker`);
+                let params = configs.map((config) => {
+                    return `${config.symbol.toLowerCase()}@ticker`;
                 });
                 binanceWS.send(JSON.stringify({
                     "method": "SUBSCRIBE",

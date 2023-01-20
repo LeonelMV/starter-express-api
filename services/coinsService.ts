@@ -19,11 +19,7 @@ const updateHistoryCoin = (newHistoricalCotizationCoin: any) => {
 };
 
 const getHistoricalCoinsFromDB = async (criteria: any = {}) => {
-    const historicalCotizationCoins = await HistoricalCotizationCoins.find(criteria, { lastPrice: 1 }, (error) => {
-        if(error){
-            logger.error(error);
-        }
-    });
+    const historicalCotizationCoins = await HistoricalCotizationCoins.find(criteria, { lastPrice: 1 });
     return historicalCotizationCoins;
 }
 

@@ -33,11 +33,7 @@ const updateNotificationNumber = async (notificationNumberToUpdate) => {
 }
 
 const removeNotificationNumber = async (notificationNumberToRemove) => {
-    const notificationNumber = await NotificationsNumbers.findOneAndRemove(notificationNumberToRemove, (error) => {
-        if(error){
-            logger.error(error);
-        }
-    });
+    const notificationNumber = await NotificationsNumbers.findOneAndRemove(notificationNumberToRemove);
     return notificationNumber;
 }
 

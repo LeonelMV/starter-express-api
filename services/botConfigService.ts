@@ -23,7 +23,7 @@ const createBotConfig = async (coin, symbol, percentage, commission, automaticRe
     return newBotConfig;
 }
 
-const updateBotConfig = async (id, percentage, commission) => {
+const updateBotConfig = async (id: any, percentage: any, commission: any) => {
     const botConfig = await BotConfig.findOneAndUpdate({ _id: id }, { percentage, commission }, { new: true, useFindAndModify: true }, (error,) => {
         if(error){
             logger.error(error);

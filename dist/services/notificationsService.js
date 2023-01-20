@@ -40,11 +40,7 @@ const updateNotificationNumber = (notificationNumberToUpdate) => __awaiter(void 
     return notificationNumber;
 });
 const removeNotificationNumber = (notificationNumberToRemove) => __awaiter(void 0, void 0, void 0, function* () {
-    const notificationNumber = yield notificationsNumbers_1.default.findOneAndRemove(notificationNumberToRemove, (error) => {
-        if (error) {
-            commons_1.logger.error(error);
-        }
-    });
+    const notificationNumber = yield notificationsNumbers_1.default.findOneAndRemove(notificationNumberToRemove);
     return notificationNumber;
 });
 exports.default = {

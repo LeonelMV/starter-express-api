@@ -22,11 +22,11 @@ const init = () => {
             const botConfigs = yield services_1.botConfigService.getBotConfig();
             const operationsCountData = yield services_1.statisticsService.getOperationsCountByDate();
             services_1.whatsappService.sendNotificationsToAllMembers(`** A CONTINUACION SE ENVIA EL RESUMEN DEL DIA DE HOY **`);
-            botConfigs.forEach(botConfig => {
+            /*botConfigs.forEach(botConfig => {
                 const operationResume = operationsCountData.find(operation => operation.symbol === botConfig.symbol);
                 let message = `El simbolo ${operationResume.symbol} tuvo ${operationResume.totalBuys} compras y ${operationResume.totalSells} ventas. `;
-                services_1.whatsappService.sendNotificationsToAllMembers(message);
-            });
+                whatsappService.sendNotificationsToAllMembers(message);
+            });*/
             let currentUsdtBalance;
             const initialInversion = 6046; //FIXME LEO calcular automaticamente usando el histórico.
             const accountBalances = yield services_1.binanceService.getBalanceForAllCoins();

@@ -23,9 +23,8 @@ const init = (sendMessage) => __awaiter(void 0, void 0, void 0, function* () {
             commons_1.logger.info(`*** LISTENING WEB SOCKETS BINANCE INFORMATION *** ${commons_1.utils.getCurrentTime()}`);
             services_1.botConfigService.getBotConfig()
                 .then((configs) => {
-                let params = [];
-                configs.forEach((config) => {
-                    params.push(`${config.symbol.toLowerCase()}@ticker`);
+                let params = configs.map((config) => {
+                    return `${config.symbol.toLowerCase()}@ticker`;
                 });
                 binanceWS.send(JSON.stringify({
                     "method": "SUBSCRIBE",

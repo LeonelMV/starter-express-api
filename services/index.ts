@@ -1,17 +1,7 @@
-import authService from './authService';
-import binanceService from './binanceService';
-import whatsappService from './whatsappService';
-import notificationsService from './notificationsService';
-import coinsService from './coinsService';
-import botConfigService from './botConfigService';
-import statisticsService from './statisticsService';
-
-export {
-    binanceService,
-    authService,
-    whatsappService,
-    notificationsService,
-    coinsService,
-    botConfigService,
-    statisticsService,
-}
+export * as authService from './authService';
+export * as binanceService from './binanceService';
+export * as whatsappService from './whatsappService';
+export * as notificationsService from './notificationsService';
+export * as coinsService from './coinsService';
+export * as botConfigService from './botConfigService';
+export * as statisticsService from './statisticsService';

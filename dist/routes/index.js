@@ -31,4 +31,4 @@ api.delete("/bot/configuration", controllers_1.botConfigController.deleteBotConf
 api.get("/statistics/operations", controllers_1.statisticsController.getOperationsCount);
 api.get("/statistics/operationsByDate", controllers_1.statisticsController.getOperationsCountByDate);
 /** END ROUTES **/
-module.exports = api;
+exports.default = api;

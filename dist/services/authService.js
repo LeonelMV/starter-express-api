@@ -11,12 +11,12 @@ const createToken = (user) => {
         iat: (0, moment_timezone_1.default)().unix(),
         exp: (0, moment_timezone_1.default)().add(14, 'days').unix() //expira en 14 dias
     };
-    return jwt_simple_1.default.encode(payload, process.env['SECRET_TOKEN']);
+    return jwt_simple_1.default.encode(payload, process.env['SECRET_TOKEN'] || ''); //FIXME
 };
 const decodeToken = (token) => {
     const decode = new Promise((resolve, reject) => {
         try {
-            const payload = jwt_simple_1.default.decode(token, process.env['SECRET_TOKEN']);
+            const payload = jwt_simple_1.default.decode(token, process.env['SECRET_TOKEN'] || ''); //FIXME
             if (payload.exp <= (0, moment_timezone_1.default)().unix()) {
                 reject({
                     status: 401,
@@ -34,7 +34,7 @@ const decodeToken = (token) => {
     });
     return decode;
 };
-module.exports = {
+exports.default = {
     createToken,
     decodeToken
 };

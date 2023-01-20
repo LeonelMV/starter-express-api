@@ -469,7 +469,7 @@ const getAccountTradesBetweenDates = (startTime, endTime, fromId = '', limit = 1
         promises = botConfigs.map((botConfig) => __awaiter(void 0, void 0, void 0, function* () {
             startTime = startTime ? startTime : (0, moment_timezone_1.default)().startOf("day").toDate().getTime();
             endTime = endTime ? endTime : (0, moment_timezone_1.default)().endOf("day").toDate().getTime();
-            const accountTrades = yield getAccountTrades(botConfig.symbol, startTime, endTime, fromId, limit).catch(error => res.status(500).send(error));
+            const accountTrades = yield getAccountTrades(botConfig.symbol, startTime, endTime, fromId, limit).catch((error) => error);
             return accountTrades;
         }));
     }

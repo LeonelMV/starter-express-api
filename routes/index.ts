@@ -50,4 +50,4 @@ api.get("/statistics/operationsByDate", statisticsController.getOperationsCountB
 
 /** END ROUTES **/
 
-module.exports = api;
+export default api;

@@ -28,11 +28,7 @@ const updateHistoryCoin = (newHistoricalCotizationCoin) => {
     });
 };
 const getHistoricalCoinsFromDB = (criteria = {}) => __awaiter(void 0, void 0, void 0, function* () {
-    const historicalCotizationCoins = yield historicalCotizationCoins_1.default.find(criteria, { lastPrice: 1 }, (error) => {
-        if (error) {
-            commons_1.logger.error(error);
-        }
-    });
+    const historicalCotizationCoins = yield historicalCotizationCoins_1.default.find(criteria, { lastPrice: 1 });
     return historicalCotizationCoins;
 });
 /** GET JUMPS BY SYMBOL */

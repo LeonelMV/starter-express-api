@@ -1,20 +1,33 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.statisticsService = exports.botConfigService = exports.coinsService = exports.notificationsService = exports.whatsappService = exports.authService = exports.binanceService = void 0;
-const authService_1 = __importDefault(require("./authService"));
-exports.authService = authService_1.default;
-const binanceService_1 = __importDefault(require("./binanceService"));
-exports.binanceService = binanceService_1.default;
-const whatsappService_1 = __importDefault(require("./whatsappService"));
-exports.whatsappService = whatsappService_1.default;
-const notificationsService_1 = __importDefault(require("./notificationsService"));
-exports.notificationsService = notificationsService_1.default;
-const coinsService_1 = __importDefault(require("./coinsService"));
-exports.coinsService = coinsService_1.default;
-const botConfigService_1 = __importDefault(require("./botConfigService"));
-exports.botConfigService = botConfigService_1.default;
-const statisticsService_1 = __importDefault(require("./statisticsService"));
-exports.statisticsService = statisticsService_1.default;
+exports.statisticsService = exports.botConfigService = exports.coinsService = exports.notificationsService = exports.whatsappService = exports.binanceService = exports.authService = void 0;
+exports.authService = __importStar(require("./authService"));
+exports.binanceService = __importStar(require("./binanceService"));
+exports.whatsappService = __importStar(require("./whatsappService"));
+exports.notificationsService = __importStar(require("./notificationsService"));
+exports.coinsService = __importStar(require("./coinsService"));
+exports.botConfigService = __importStar(require("./botConfigService"));
+exports.statisticsService = __importStar(require("./statisticsService"));

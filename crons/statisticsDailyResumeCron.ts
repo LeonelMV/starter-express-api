@@ -20,11 +20,11 @@ const init = () => {
             const operationsCountData = await statisticsService.getOperationsCountByDate();
             whatsappService.sendNotificationsToAllMembers(`** A CONTINUACION SE ENVIA EL RESUMEN DEL DIA DE HOY **`);
             
-            botConfigs.forEach(botConfig => {
+            /*botConfigs.forEach(botConfig => {
                 const operationResume = operationsCountData.find(operation => operation.symbol === botConfig.symbol);
                 let message = `El simbolo ${operationResume.symbol} tuvo ${operationResume.totalBuys} compras y ${operationResume.totalSells} ventas. `;
                 whatsappService.sendNotificationsToAllMembers(message);
-            });
+            });*/
     
             let currentUsdtBalance;
             const initialInversion = 6046; //FIXME LEO calcular automaticamente usando el histórico.

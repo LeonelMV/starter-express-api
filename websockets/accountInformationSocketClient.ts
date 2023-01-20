@@ -48,7 +48,6 @@ const init = async (sendMessage) => {
     } catch (error){
         logger.error(error);
         logger.info("INTENTANDO RESTABLECER BOT");
-        restartServer();
     }
     
     

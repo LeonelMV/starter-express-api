@@ -58,7 +58,7 @@ const getAllSymbolsUSDT = async () => {
 }
 
 /** CREATES A NEW ORDER */
-const createNewOrder = async (symbol: string, side: string, quantity: number, price: number, type: string = 'LIMIT', timeInForce: string = 'GTC') => {
+const createNewOrder = async (symbol: any, side: any, quantity: number, price: number, type: string = 'LIMIT', timeInForce: string = 'GTC') => {
   let result;
   try {
     const timestamp = Date.now();
@@ -147,7 +147,7 @@ const cancelOrder = async (symbol: string, orderId: any, origClientOrderId: any,
 };
 
 /** CANCEL ALL OPEN ORDERS */
-const cancelAllOrders = async (symbol?: string) => {
+const cancelAllOrders = async (symbol?: any) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -194,7 +194,7 @@ const getAccountInformation = async () => {
 };
 
 /** RETURN ALL OPEN ORDERS */
-const getAllCurrentOpenOrders = async (symbol: string) => {
+const getAllCurrentOpenOrders = async (symbol?: any) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -218,7 +218,7 @@ const getAllCurrentOpenOrders = async (symbol: string) => {
 }
 
 /** RETURN A SPECIFIC ORDER BY SYMBOL AND ID */
-const getOrderById = async (symbol: string, orderId: any) => {
+const getOrderById = async (symbol: any, orderId: any) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -242,7 +242,7 @@ const getOrderById = async (symbol: string, orderId: any) => {
 }
 
 /** GET ALL ORDERS  */
-const getAllOrders = async (symbol: string, orderId: any, startTime: any, endTime: any = Date.now(), limit: number = 500) => {
+const getAllOrders = async (symbol: any, orderId: any, startTime: any, endTime: any = Date.now(), limit: number = 500) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -290,7 +290,7 @@ const getAccountTrades = async (symbol: any, startTime: any = '', endTime: any =
   return result;
 }
 
-const cancelSymbolOrdersIndividually = async (symbol: string) => {
+const cancelSymbolOrdersIndividually = async (symbol: any) => {
     const currentOpenOrders = await getAllCurrentOpenOrders(symbol).catch(error => logger.error(error));
     if(currentOpenOrders && currentOpenOrders.length > 0) {
       currentOpenOrders.forEach((openOrder: any) => {
@@ -456,7 +456,7 @@ const getHistoricalCoin = async (symbol, interval = '1m', limit = 1000, startTim
   return result;
 }
 
-const getSymbolDetail = async (symbol: string) => {
+const getSymbolDetail = async (symbol: any) => {
   const exchangeInfo = await getExchangeInfo();
   const symbolInfo = exchangeInfo.symbols.find((symbolInfo: any) => symbolInfo.symbol === symbol);
   return symbolInfo;
@@ -474,15 +474,15 @@ const getPriceFixedSize = (symbolDetail: any) => {
   return  Math.abs(priceFixedSize);
 }
 
-const getAccountTradesBetweenDates = async (startTime?: any, endTime?: any, fromId: string = '', limit: number = 1000000) => {
+const getAccountTradesBetweenDates = async (startTime?: any, endTime?: any, fromId: any = '', limit: number = 1000000) => {
   let promises;
-  let trades = [];
+  let trades: any = [];
   try {
     const botConfigs = await botConfigService.getBotConfig().catch(error => logger.error(error));
     promises = botConfigs.map(async (botConfig: any) => {
       startTime = startTime ? startTime : moment().startOf("day").toDate().getTime();
       endTime = endTime ? endTime : moment().endOf("day").toDate().getTime();
-      const accountTrades = await getAccountTrades(botConfig.symbol, startTime, endTime, fromId, limit).catch(error => res.status(500).send(error));
+      const accountTrades = await getAccountTrades(botConfig.symbol, startTime, endTime, fromId, limit).catch((error: any): any => error);
       return accountTrades;
     });
   }catch(error){

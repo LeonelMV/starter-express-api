@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const services_1 = require("../services");
 const getOperationsCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { sinceDate, untilDate } = req.query;
-    const data = yield services_1.statisticsService.getOperationsCount(sinceDate, untilDate).catch(error => { var _a; return res.status(400).send((_a = error === null || error === void 0 ? void 0 : error.data) === null || _a === void 0 ? void 0 : _a.msg); });
+    //const { sinceDate, untilDate } = req.query; 
+    const data = yield services_1.statisticsService.getOperationsCount().catch(error => { var _a; return res.status(400).send((_a = error === null || error === void 0 ? void 0 : error.data) === null || _a === void 0 ? void 0 : _a.msg); });
     return res.status(200).send(data);
 });
 const getOperationsCountByDate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

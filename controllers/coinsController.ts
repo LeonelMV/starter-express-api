@@ -1,9 +1,10 @@
+import { Request, Response } from 'express';
 import { coinsService } from '../services';
 
- const getJumpsSimulation = async (req, res) => {
+ const getJumpsSimulation = async (req: Request, res: Response) => {
     const { name, percentage, investment, sinceDate, untilDate } = req.query;
     req.setTimeout(1000 * 60 * 60 * 24);
-    let criteria = {};
+    let criteria: any = {};
     if(name){
        criteria.name = name;
     }

@@ -24,16 +24,15 @@ const getOperationsCount = () => __awaiter(void 0, void 0, void 0, function* () 
             sells: 0,
             buys: 0
         };
-        const trades = yield _1.binanceService.getAccountTrades(botConfig.symbol).catch(error => reject(error));
+        const trades = yield _1.binanceService.getAccountTrades(botConfig.symbol).catch(error => error);
         statisticsBySymbol.sells = (_a = trades === null || trades === void 0 ? void 0 : trades.filter(trade => !trade.isBuyer)) === null || _a === void 0 ? void 0 : _a.length;
         statisticsBySymbol.buys = (_b = trades === null || trades === void 0 ? void 0 : trades.filter(trade => trade.isBuyer)) === null || _b === void 0 ? void 0 : _b.length;
         return statisticsBySymbol;
     }));
     const results = yield Promise.all(promises);
-    results.forEach(result => {
+    results.forEach((result) => {
         statistics.totalSells += result.sells;
         statistics.totalBuys += result.buys;
-        statistics.symbolsStatistics.push(result);
     });
     return statistics;
 });
@@ -51,7 +50,7 @@ const getOperationsCountByDate = (sinceDate, untilDate) => __awaiter(void 0, voi
             sells: 0,
             buys: 0
         };
-        const trades = yield _1.binanceService.getAccountTradesBetweenDates(sinceDate, untilDate).catch(error => reject(error));
+        const trades = yield _1.binanceService.getAccountTradesBetweenDates(sinceDate, untilDate).catch(error => error);
         statisticsBySymbol.sells = (_c = trades === null || trades === void 0 ? void 0 : trades.filter(trade => !trade.isBuyer)) === null || _c === void 0 ? void 0 : _c.length;
         statisticsBySymbol.buys = (_d = trades === null || trades === void 0 ? void 0 : trades.filter(trade => trade.isBuyer)) === null || _d === void 0 ? void 0 : _d.length;
         return statisticsBySymbol;
@@ -60,7 +59,6 @@ const getOperationsCountByDate = (sinceDate, untilDate) => __awaiter(void 0, voi
     results.forEach(result => {
         statistics.totalSells += result.sells;
         statistics.totalBuys += result.buys;
-        statistics.symbolsStatistics.push(result);
     });
     return statistics;
 });

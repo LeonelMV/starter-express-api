@@ -12,13 +12,15 @@ const createBotConfig = async (req, res) => {
 }
 
 const updateBotConfig = async (req, res) => {
+    const { id } = req.params;
     const { percentage, commission } = req.body;
-    const data = await botConfigService.updateBotConfig(percentage, commission);
+    const data = await botConfigService.updateBotConfig(id, percentage, commission);
     return res.status(200).send(data);
 }
 
 const deleteBotConfig = async (req, res) => {
-    const data = await botConfigService.deleteBotConfig();
+    const { id } = req.params;
+    const data = await botConfigService.deleteBotConfig(id);
     return res.status(200).send(data);
 }
 

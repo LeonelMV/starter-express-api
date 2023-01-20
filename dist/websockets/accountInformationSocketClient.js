@@ -47,7 +47,6 @@ const init = (sendMessage) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         commons_1.logger.error(error);
         commons_1.logger.info("INTENTANDO RESTABLECER BOT");
-        restartServer();
     }
     const handleOnMessage = (message) => {
         switch (message.e) {
