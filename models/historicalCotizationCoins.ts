@@ -9,4 +9,4 @@ const HistoricalCotizationCoinsSchema = new Schema({
     date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('HistoricalCotizationCoins', HistoricalCotizationCoinsSchema);
+export default mongoose.model('HistoricalCotizationCoins', HistoricalCotizationCoinsSchema);

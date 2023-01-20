@@ -18,4 +18,4 @@ app.use((req, res, next) => {
     next();
 });
 app.use("/api", routes_1.default);
-module.exports = app;
+exports.default = app;

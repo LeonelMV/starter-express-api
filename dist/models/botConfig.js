@@ -1,4 +1,5 @@
 'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const BotConfigSchema = new Schema({
@@ -11,4 +12,4 @@ const BotConfigSchema = new Schema({
     allowedToBuy: { type: Boolean, required: true, default: true },
     allowedToSell: { type: Boolean, required: true, default: true },
 });
-module.exports = mongoose.model('BotConfig', BotConfigSchema);
+exports.default = mongoose.model('BotConfig', BotConfigSchema);

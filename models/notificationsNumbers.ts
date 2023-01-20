@@ -10,4 +10,4 @@ const NotificationsNumbersSchema = new Schema({
   enabled: { type: Boolean, default: true },
 });
 
-module.exports = mongoose.model('NotificationsNumbers', NotificationsNumbersSchema);
+export default mongoose.model('NotificationsNumbers', NotificationsNumbersSchema);

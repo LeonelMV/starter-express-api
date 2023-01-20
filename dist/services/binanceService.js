@@ -49,7 +49,7 @@ const getCoinData = (symbol) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getAllSymbolsUSDT = () => __awaiter(void 0, void 0, void 0, function* () {
     const coinsData = yield getCoinData();
-    const result = coinsData.filter(coinData => {
+    const result = coinsData.filter((coinData) => {
         const isUSDTSymbol = coinData.symbol.includes('USDT');
         const isInBlackList = commons_1.utils.isSymbolInBlackList(coinData.symbol);
         return isUSDTSymbol && !isInBlackList;
@@ -338,8 +338,8 @@ const relaunchOrdersSymbol = (symbol, price) => __awaiter(void 0, void 0, void 0
 const launchNewOrders = (symbol, coinName, coinPrice, percentage, commission, automaticReinvestment = false, allowedToBuy = true, allowedToSell = true) => __awaiter(void 0, void 0, void 0, function* () {
     const accountInformation = yield getAccountInformation().catch(error => commons_1.logger.error(error));
     if (accountInformation && accountInformation.balances) {
-        const USDTBalance = accountInformation.balances.find(accountBalance => accountBalance.asset === constants_1.USDT);
-        const coinBalance = accountInformation.balances.find(accountBalance => accountBalance.asset === coinName);
+        const USDTBalance = accountInformation.balances.find((accountBalance) => accountBalance.asset === constants_1.USDT);
+        const coinBalance = accountInformation.balances.find((accountBalance) => accountBalance.asset === coinName);
         //Getting symbol detail to get the precision
         const symbolDetail = yield getSymbolDetail(symbol);
         const quantityFixedSize = getQuantityFixedSize(symbolDetail);
@@ -355,7 +355,7 @@ const launchNewOrders = (symbol, coinName, coinPrice, percentage, commission, au
         }
         const maxPriceToBuy = parseFloat((coinPrice * (1 - percentage)).toPrecision(4)).toFixed(priceFixedSize);
         const minPriceToSell = parseFloat((coinPrice / (1 - percentage)).toPrecision(4)).toFixed(priceFixedSize);
-        if (allowedToBuy && (USDTBalance.free >= parseFloat((coinToBuy * coinPrice)))) {
+        if (allowedToBuy && (USDTBalance.free >= parseFloat((coinToBuy * coinPrice).toString()))) {
             createNewOrder(symbol, constants_1.BINANCE_OPERATION_TYPES.BUY, coinToBuy, maxPriceToBuy);
         }
         if (allowedToSell && (coinBalance.free >= parseFloat(coinToSell))) {
@@ -448,16 +448,16 @@ const getHistoricalCoin = (symbol, interval = '1m', limit = 1000, startTime, end
 });
 const getSymbolDetail = (symbol) => __awaiter(void 0, void 0, void 0, function* () {
     const exchangeInfo = yield getExchangeInfo();
-    const symbolInfo = exchangeInfo.symbols.find(symbolInfo => symbolInfo.symbol === symbol);
+    const symbolInfo = exchangeInfo.symbols.find((symbolInfo) => symbolInfo.symbol === symbol);
     return symbolInfo;
 });
 const getQuantityFixedSize = (symbolDetail) => {
-    const lotSizeFilter = symbolDetail.filters.find(filter => filter.filterType === 'LOT_SIZE');
+    const lotSizeFilter = symbolDetail.filters.find((filter) => filter.filterType === 'LOT_SIZE');
     const quantityFixedSize = Math.log10(parseFloat(lotSizeFilter.stepSize));
     return Math.abs(quantityFixedSize);
 };
 const getPriceFixedSize = (symbolDetail) => {
-    const lotSizeFilter = symbolDetail.filters.find(filter => filter.filterType === 'PRICE_FILTER');
+    const lotSizeFilter = symbolDetail.filters.find((filter) => filter.filterType === 'PRICE_FILTER');
     const priceFixedSize = Math.log10(parseFloat(lotSizeFilter.tickSize));
     return Math.abs(priceFixedSize);
 };

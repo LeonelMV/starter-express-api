@@ -5,7 +5,7 @@ import {
 } from '../commons';
 import binanceService from './binanceService';
 
-const updateHistoryCoin = (newHistoricalCotizationCoin) => {
+const updateHistoryCoin = (newHistoricalCotizationCoin: any) => {
     return new Promise((resolve, reject) => {
         const historicalCotizationCoin = new HistoricalCotizationCoins(newHistoricalCotizationCoin);
         historicalCotizationCoin.save((error, savedHistoricalCotizationCoin) => {
@@ -18,7 +18,7 @@ const updateHistoryCoin = (newHistoricalCotizationCoin) => {
     });
 };
 
-const getHistoricalCoinsFromDB = async (criteria = {}) => {
+const getHistoricalCoinsFromDB = async (criteria: any = {}) => {
     const historicalCotizationCoins = await HistoricalCotizationCoins.find(criteria, { lastPrice: 1 }, (error) => {
         if(error){
             logger.error(error);
@@ -28,11 +28,11 @@ const getHistoricalCoinsFromDB = async (criteria = {}) => {
 }
 
 /** GET JUMPS BY SYMBOL */
-const getJumpsSimulation = async (criteria = {}, percentage, investment, sinceDate, untilDate) => {
-    let coinsJumpsResult = [];
+const getJumpsSimulation = async (criteria: any = {}, percentage: any, investment: any, sinceDate: any, untilDate: any) => {
+    let coinsJumpsResult: any = [];
     const coinSymbols = await binanceService.getAllSymbolsUSDT().catch(error => logger.error(error));
     for(let i=0; i < coinSymbols.length; i++) {
-        const historicalCoinCriteria = { symbol: coinSymbols[i].symbol };
+        const historicalCoinCriteria = { symbol: coinSymbols[i].symbol, date: {} };
         if(sinceDate && untilDate){
             historicalCoinCriteria.date = { $gte: sinceDate, $lte: untilDate }
         }
@@ -53,7 +53,7 @@ const getCoinJumpsWithIntervalPercentage = (name, percentage, investment, sinceD
     const INTERVAL = 0.1;
     let iterations = percentage / INTERVAL;
     let currentPercentage = INTERVAL;
-    let coinsJumpsResult = [];
+    let coinsJumpsResult: any = [];
     for(let i = 0; i <= iterations; i++){
         const coinJumps = getCoinJumps(name, currentPercentage, investment, sinceDate, untilDate, historicalCotizationCoins);
         coinsJumpsResult.push(coinJumps);
@@ -87,7 +87,7 @@ const getCoinJumps = (name, percentage, investment, sinceDate, untilDate, histor
             }
         });
     }
-    const cotizationGain = utils.getCotizationGain(initialValue, finalValue, (1 - percentage), investment);
+    const cotizationGain: any = utils.getCotizationGain(initialValue, finalValue, (1 - percentage), investment);
     const botGain = utils.getBotGain(rises, cotizationGain, initialValue, finalValue, (1 - percentage), investment);
     const absoluteGain = parseFloat(cotizationGain) + parseFloat(botGain);
     const result = { 

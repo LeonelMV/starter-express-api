@@ -28,7 +28,7 @@ const axiosInstance = axios.create({
 });
 
 /** GET COIN DATA FOR A SYMBOL */
-const getCoinData = async (symbol) => {
+const getCoinData = async (symbol?: any) => {
   let result;
   try{
     const url = `/api/v3/ticker/24hr?${symbol ? `symbol=${symbol}` : ''}`;
@@ -49,7 +49,7 @@ const getCoinData = async (symbol) => {
 
 const getAllSymbolsUSDT = async () => {
   const coinsData = await getCoinData();
-  const result = coinsData.filter(coinData => {
+  const result = coinsData.filter((coinData: any) => {
     const isUSDTSymbol = coinData.symbol.includes('USDT');
     const isInBlackList = utils.isSymbolInBlackList(coinData.symbol);
     return isUSDTSymbol && !isInBlackList;
@@ -58,7 +58,7 @@ const getAllSymbolsUSDT = async () => {
 }
 
 /** CREATES A NEW ORDER */
-const createNewOrder = async (symbol, side, quantity, price, type = 'LIMIT', timeInForce = 'GTC') => {
+const createNewOrder = async (symbol: string, side: string, quantity: number, price: number, type: string = 'LIMIT', timeInForce: string = 'GTC') => {
   let result;
   try {
     const timestamp = Date.now();
@@ -102,7 +102,7 @@ const createListenKey = async () => {
 };
 
 /** RENEWS A LISTEN KEY SESSION USED FOR WEBSOCKET STREAM DATA */
-const updateListenKey = async (listenKey) => {
+const updateListenKey = async (listenKey: string) => {
   let result;
   try {
     const queryParams = `listenKey=${listenKey}`;
@@ -123,7 +123,7 @@ const updateListenKey = async (listenKey) => {
 };
 
 /** CANCEL SPECIFIC ORDER */
-const cancelOrder = async (symbol, orderId, origClientOrderId, newClientOrderId) => {
+const cancelOrder = async (symbol: string, orderId: any, origClientOrderId: any, newClientOrderId?: any) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -147,7 +147,7 @@ const cancelOrder = async (symbol, orderId, origClientOrderId, newClientOrderId)
 };
 
 /** CANCEL ALL OPEN ORDERS */
-const cancelAllOrders = async (symbol) => {
+const cancelAllOrders = async (symbol?: string) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -194,7 +194,7 @@ const getAccountInformation = async () => {
 };
 
 /** RETURN ALL OPEN ORDERS */
-const getAllCurrentOpenOrders = async (symbol) => {
+const getAllCurrentOpenOrders = async (symbol: string) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -218,7 +218,7 @@ const getAllCurrentOpenOrders = async (symbol) => {
 }
 
 /** RETURN A SPECIFIC ORDER BY SYMBOL AND ID */
-const getOrderById = async (symbol, orderId) => {
+const getOrderById = async (symbol: string, orderId: any) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -242,7 +242,7 @@ const getOrderById = async (symbol, orderId) => {
 }
 
 /** GET ALL ORDERS  */
-const getAllOrders = async (symbol, orderId, startTime, endTime = Date.now(), limit = 500) => {
+const getAllOrders = async (symbol: string, orderId: any, startTime: any, endTime: any = Date.now(), limit: number = 500) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -266,7 +266,7 @@ const getAllOrders = async (symbol, orderId, startTime, endTime = Date.now(), li
 }
 
 /** RETURN ALL ACCOUNT TRADES BY FILTERS */
-const getAccountTrades = async (symbol, startTime = '', endTime = '', fromId = '', limit = 1000000) => {
+const getAccountTrades = async (symbol: any, startTime: any = '', endTime: any = '', fromId: any = '', limit: number = 1000000) => {
   let result;
   try {
     const timestamp = Date.now();
@@ -290,10 +290,10 @@ const getAccountTrades = async (symbol, startTime = '', endTime = '', fromId = '
   return result;
 }
 
-const cancelSymbolOrdersIndividually = async (symbol) => {
+const cancelSymbolOrdersIndividually = async (symbol: string) => {
     const currentOpenOrders = await getAllCurrentOpenOrders(symbol).catch(error => logger.error(error));
     if(currentOpenOrders && currentOpenOrders.length > 0) {
-      currentOpenOrders.forEach((openOrder) => {
+      currentOpenOrders.forEach((openOrder: any) => {
         cancelOrder(symbol, openOrder.orderId, openOrder.clientOrderId).catch(error => logger.error(error));
       });
     }
@@ -302,7 +302,7 @@ const cancelSymbolOrdersIndividually = async (symbol) => {
 const launchBotOperations = async () => {
   //GETTING BOT CONFIGURATION TO MAKE ORDERS FOR ALL SYMBOLS
   const configs = await botConfigService.getBotConfig().catch(error => logger.error(error));
-  configs.forEach(async config => {
+  configs.forEach(async (config: any) => {
     const { symbol, percentage, commission, automaticReinvestment, enabled, allowedToBuy, allowedToSell } = config;
       //CANCELL PREVIOUS ORDERS
       if(enabled) {
@@ -323,10 +323,10 @@ const launchBotOperations = async () => {
 
 }
 
-const relaunchOrdersSymbol = async (symbol, price) => {
+const relaunchOrdersSymbol = async (symbol: any, price: any) => {
   //GETTING BOT CONFIGURATION TO MAKE ORDERS FOR SYMBOLS
   const configs = await botConfigService.getBotConfig({ symbol }).catch(error => logger.error(error));
-  configs.forEach(async config => {
+  configs.forEach(async (config: any) => {
     const { symbol, percentage, commission, automaticReinvestment, enabled, allowedToBuy, allowedToSell } = config;
     if(enabled) {
       const coinName = utils.getCoinName(symbol);
@@ -338,11 +338,11 @@ const relaunchOrdersSymbol = async (symbol, price) => {
 }
 
 /** LAUNCH COIN ORDERS USING JUMPING PERCENTS */
-const launchNewOrders = async (symbol, coinName, coinPrice, percentage, commission, automaticReinvestment = false, allowedToBuy = true, allowedToSell = true) => {
+const launchNewOrders = async (symbol: any, coinName: any, coinPrice: any, percentage: any, commission: any, automaticReinvestment: any = false, allowedToBuy = true, allowedToSell = true) => {
   const accountInformation = await getAccountInformation().catch(error => logger.error(error));
   if(accountInformation && accountInformation.balances){
-    const USDTBalance = accountInformation.balances.find(accountBalance => accountBalance.asset === USDT);
-    const coinBalance = accountInformation.balances.find(accountBalance => accountBalance.asset === coinName);
+    const USDTBalance = accountInformation.balances.find((accountBalance: any) => accountBalance.asset === USDT);
+    const coinBalance = accountInformation.balances.find((accountBalance: any) => accountBalance.asset === coinName);
     
     //Getting symbol detail to get the precision
     const symbolDetail = await getSymbolDetail(symbol);
@@ -351,19 +351,19 @@ const launchNewOrders = async (symbol, coinName, coinPrice, percentage, commissi
     const priceFixedSize = getPriceFixedSize(symbolDetail);
     
     const totalBalance = parseFloat(coinBalance.free) + parseFloat(coinBalance.locked);
-    const coinToBuy = parseFloat((totalBalance * percentage / (1 - percentage) / commission).toPrecision(2)).toFixed(quantityFixedSize);
+    const coinToBuy: any = parseFloat((totalBalance * percentage / (1 - percentage) / commission).toPrecision(2)).toFixed(quantityFixedSize);
     
-    let coinToSell;
+    let coinToSell: any;
     if(automaticReinvestment){
       coinToSell = parseFloat((totalBalance * percentage * (1 - (percentage * 2 / 3))).toPrecision(2)).toFixed(quantityFixedSize);
     }else{
       coinToSell = parseFloat((totalBalance * percentage).toPrecision(2)).toFixed(quantityFixedSize);
     }
   
-    const maxPriceToBuy = parseFloat((coinPrice * (1 - percentage)).toPrecision(4)).toFixed(priceFixedSize);
-    const minPriceToSell = parseFloat((coinPrice / (1 - percentage)).toPrecision(4)).toFixed(priceFixedSize);
+    const maxPriceToBuy: any = parseFloat((coinPrice * (1 - percentage)).toPrecision(4)).toFixed(priceFixedSize);
+    const minPriceToSell: any = parseFloat((coinPrice / (1 - percentage)).toPrecision(4)).toFixed(priceFixedSize);
     
-    if(allowedToBuy && (USDTBalance.free >= parseFloat((coinToBuy * coinPrice)))){
+    if(allowedToBuy && (USDTBalance.free >= parseFloat((coinToBuy * coinPrice).toString()))){
       createNewOrder(symbol, BINANCE_OPERATION_TYPES.BUY, coinToBuy, maxPriceToBuy);
     }
     if(allowedToSell && (coinBalance.free >= parseFloat(coinToSell))) {
@@ -456,30 +456,30 @@ const getHistoricalCoin = async (symbol, interval = '1m', limit = 1000, startTim
   return result;
 }
 
-const getSymbolDetail = async (symbol) => {
+const getSymbolDetail = async (symbol: string) => {
   const exchangeInfo = await getExchangeInfo();
-  const symbolInfo = exchangeInfo.symbols.find(symbolInfo => symbolInfo.symbol === symbol);
+  const symbolInfo = exchangeInfo.symbols.find((symbolInfo: any) => symbolInfo.symbol === symbol);
   return symbolInfo;
 }
 
-const getQuantityFixedSize = (symbolDetail) => {
-  const lotSizeFilter = symbolDetail.filters.find(filter => filter.filterType === 'LOT_SIZE');
+const getQuantityFixedSize = (symbolDetail: any) => {
+  const lotSizeFilter = symbolDetail.filters.find((filter: any) => filter.filterType === 'LOT_SIZE');
   const quantityFixedSize = Math.log10(parseFloat(lotSizeFilter.stepSize));
   return  Math.abs(quantityFixedSize);
 }
 
-const getPriceFixedSize = (symbolDetail) => {
-  const lotSizeFilter = symbolDetail.filters.find(filter => filter.filterType === 'PRICE_FILTER');
+const getPriceFixedSize = (symbolDetail: any) => {
+  const lotSizeFilter = symbolDetail.filters.find((filter: any) => filter.filterType === 'PRICE_FILTER');
   const priceFixedSize = Math.log10(parseFloat(lotSizeFilter.tickSize));
   return  Math.abs(priceFixedSize);
 }
 
-const getAccountTradesBetweenDates = async (startTime, endTime, fromId = '', limit = 1000000) => {
+const getAccountTradesBetweenDates = async (startTime?: any, endTime?: any, fromId: string = '', limit: number = 1000000) => {
   let promises;
   let trades = [];
   try {
     const botConfigs = await botConfigService.getBotConfig().catch(error => logger.error(error));
-    promises = botConfigs.map(async botConfig => {
+    promises = botConfigs.map(async (botConfig: any) => {
       startTime = startTime ? startTime : moment().startOf("day").toDate().getTime();
       endTime = endTime ? endTime : moment().endOf("day").toDate().getTime();
       const accountTrades = await getAccountTrades(botConfig.symbol, startTime, endTime, fromId, limit).catch(error => res.status(500).send(error));

@@ -40,7 +40,7 @@ const getJumpsSimulation = (criteria = {}, percentage, investment, sinceDate, un
     let coinsJumpsResult = [];
     const coinSymbols = yield binanceService_1.default.getAllSymbolsUSDT().catch(error => commons_1.logger.error(error));
     for (let i = 0; i < coinSymbols.length; i++) {
-        const historicalCoinCriteria = { symbol: coinSymbols[i].symbol };
+        const historicalCoinCriteria = { symbol: coinSymbols[i].symbol, date: {} };
         if (sinceDate && untilDate) {
             historicalCoinCriteria.date = { $gte: sinceDate, $lte: untilDate };
         }

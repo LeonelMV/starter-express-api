@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const services_1 = require("../services");
 const getCoinData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const symbol = req.query.symbol;
+        const symbol = req.query['symbol'];
         const data = yield services_1.binanceService.getCoinData(symbol).catch(error => error);
         return res.status(200).send(data);
     }
@@ -50,7 +50,7 @@ const getAccountInformation = (req, res) => __awaiter(void 0, void 0, void 0, fu
 });
 const getAllCurrentOpenOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const symbol = req.query.symbol;
+        const symbol = req.query['symbol'];
         const data = yield services_1.binanceService.getAllCurrentOpenOrders(symbol).catch(error => error);
         return res.status(200).send(data);
     }
@@ -60,7 +60,7 @@ const getAllCurrentOpenOrders = (req, res) => __awaiter(void 0, void 0, void 0, 
 });
 const cancelAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const symbol = req.query.symbol;
+        const symbol = req.query['symbol'];
         const data = yield services_1.binanceService.cancelAllOrders(symbol).catch(error => error);
         return res.status(200).send(data);
     }

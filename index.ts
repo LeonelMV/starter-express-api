@@ -9,9 +9,9 @@ import {
 } from './commons';
 
 import {
-  coinsCotizationCron,
+  //coinsCotizationCron,
   openOrdersCheckCron,
-  statisticsDailyResumeCron,
+  //statisticsDailyResumeCron,
 } from './crons';
 
 import webSockets from './websockets';
@@ -21,12 +21,12 @@ dotenv.config();
 const main = async () => {
   logger.info("** INITIALIZING BOT GOKU **");
   webSockets.init();
-  coinsCotizationCron.init();
+  //coinsCotizationCron.init();
   openOrdersCheckCron.init();
   //statisticsDailyResumeCron.init();
 }
 
-mongoose.connect(process.env['MONGO_DB'], { useNewUrlParser: true, useUnifiedTopology: true }, (error, response) => {
+mongoose.connect(process.env['MONGO_DB'] || '', { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
   if(error){
     return logger.error(`Error al conectar a la base de datos ${error}`);
   }

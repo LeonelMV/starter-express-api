@@ -14,4 +14,4 @@ const BotConfigSchema = new Schema({
   allowedToSell: { type: Boolean, required: true, default: true },
 });
 
-module.exports = mongoose.model('BotConfig', BotConfigSchema);
+export default mongoose.model('BotConfig', BotConfigSchema);

@@ -22,11 +22,11 @@ dotenv_1.default.config();
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     commons_1.logger.info("** INITIALIZING BOT GOKU **");
     websockets_1.default.init();
-    crons_1.coinsCotizationCron.init();
+    //coinsCotizationCron.init();
     crons_1.openOrdersCheckCron.init();
     //statisticsDailyResumeCron.init();
 });
-mongoose_1.default.connect(process.env['MONGO_DB'], { useNewUrlParser: true, useUnifiedTopology: true }, (error, response) => {
+mongoose_1.default.connect(process.env['MONGO_DB'] || '', { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
     if (error) {
         return commons_1.logger.error(`Error al conectar a la base de datos ${error}`);
     }

@@ -11,4 +11,4 @@ const NotificationsNumbersSchema = new Schema({
     apikey: { type: String, required: true, unique: true },
     enabled: { type: Boolean, default: true },
 });
-module.exports = mongoose_1.default.model('NotificationsNumbers', NotificationsNumbersSchema);
+exports.default = mongoose_1.default.model('NotificationsNumbers', NotificationsNumbersSchema);

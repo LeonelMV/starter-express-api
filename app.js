@@ -21,4 +21,4 @@ app.use((req, res, next) => {
 
 app.use("/api", api);
 
-module.exports = app;
+export default app;

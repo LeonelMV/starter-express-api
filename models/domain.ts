@@ -8,4 +8,4 @@ const DomainSchema = new Schema({
    description: {type: String, required: true}
 });
 
-module.exports = mongoose.model('Domain', DomainSchema);
+export default mongoose.model('Domain', DomainSchema);

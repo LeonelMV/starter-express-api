@@ -1,4 +1,5 @@
 'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
@@ -39,4 +40,4 @@ UserSchema.methods.comparePassword = function (password) {
     let user = this;
     return bcrypt.compareSync(password, user.password);
 };
-module.exports = mongoose.model('User', UserSchema);
+exports.default = mongoose.model('User', UserSchema);

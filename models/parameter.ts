@@ -9,4 +9,4 @@ const ParameterSchema = new Schema({
   description: {type: String, required: true}
 });
 
-module.exports = mongoose.model('Parameter', ParameterSchema);
+export default mongoose.model('Parameter', ParameterSchema);
