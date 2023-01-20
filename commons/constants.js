@@ -1,0 +1,24 @@
+const BTC_USD_SYMBOL = 'BTCUSDT';
+const USDT_BTC_SUMBOL = 'USDTBTC';
+const BTC = 'BTC';
+const USDT = 'USDT';
+
+const BINANCE_OPERATION_STATUS = {
+    NEW: 'NEW',
+    FILLED: 'FILLED',
+    CANCELED: 'CANCELED',
+};
+
+const BINANCE_OPERATION_TYPES = {
+    BUY: 'BUY',
+    SELL: 'SELL',
+}
+
+export {
+    BTC_USD_SYMBOL,
+    USDT_BTC_SUMBOL,
+    BINANCE_OPERATION_STATUS,
+    BTC,
+    USDT,
+    BINANCE_OPERATION_TYPES,
+};

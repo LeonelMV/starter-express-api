@@ -1,0 +1,10 @@
+
+********FOR TESTING***********
+API Key: PqmsWRtkdYPAJQNImWDH3IpGA31Wv9dGTGZhxnve3KWBmQaWbAhG32jGyCynQ3xO
+Secret Key: POn0Q0A61msHBcD75VPLcJFQDtjA96emJh8ChcnpzCgwjKfNYYQ0MqDx12jHffCY
+******************************
+
+********FOR PRODUCTION LEO***********
+API Key: u836lF2AmvczTBPkmfp7H6GQthgdBvsQypkdGjol0eFXObN7hi2ayO4BYB8qsTjK
+Secret Key: Rnsh4gZ0DhjmBklLyDWU4Esmwp7dZ6TT8QKEjxZiOFmhHZbAqTRpNGlnzWSqp6RP
+******************************

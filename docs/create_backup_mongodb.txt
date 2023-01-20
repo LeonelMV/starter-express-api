@@ -1,0 +1,5 @@
+mongodump --uri="mongodb://root:Cthl22klm!@192.168.0.100:27017" --db=goku
+
+To restore:
+
+mongorestore --nsInclude=goku.historicalcotizationcoins --port=27017 "./dump/goku/historicalcotizationcoins.bson"
